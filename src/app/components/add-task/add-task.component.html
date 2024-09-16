@@ -1,0 +1,16 @@
+<form (ngSubmit)="addTask()" #taskForm="ngForm" class="add-task-form">
+    <mat-form-field appearance="outline" class="add-task-input">
+      <mat-label>Nueva Tarea</mat-label>
+      <input matInput 
+             [(ngModel)]="newTaskTitle" 
+             name="newTaskTitle" 
+             required 
+             placeholder="Ingresa una nueva tarea">
+      <mat-error *ngIf="taskForm.form.get('newTaskTitle')?.invalid && taskForm.form.get('newTaskTitle')?.touched">
+        Por favor, ingrese una tarea válida.
+      </mat-error>
+    </mat-form-field>
+    <button mat-raised-button color="primary" type="submit" [disabled]="!taskForm.form.valid" class="add-task-button">
+      Añadir Tarea
+    </button>
+  </form>

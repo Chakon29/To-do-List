@@ -1,0 +1,29 @@
+<mat-card class="task-list-card">
+    <mat-card-header>
+      <mat-card-title>Mis Tareas</mat-card-title>
+    </mat-card-header>
+    
+    <mat-card-content>
+      <app-add-task (taskAdded)="onTaskAdded($event)"></app-add-task>
+      
+      
+  
+      <mat-divider class="main-divider"></mat-divider>
+  
+      <mat-list class="task-list">
+        <ng-container *ngIf="(tasks$ | async)?.length; else noTasks">
+          <app-task-item 
+            *ngFor="let task of tasks$ | async" 
+            [task]="task"
+            (taskCompleted)="onTaskCompleted($event)"
+            (taskDeleted)="onTaskDeleted($event)"
+            (taskEdited)="onTaskEdited($event)">
+          </app-task-item>
+        </ng-container>
+        
+        <ng-template #noTasks>
+          <p class="no-tasks-message">No hay tareas pendientes. ¡Añade una nueva tarea!</p>
+        </ng-template>
+      </mat-list>
+    </mat-card-content>
+  </mat-card>

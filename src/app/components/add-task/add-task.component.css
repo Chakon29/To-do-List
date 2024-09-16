@@ -1,0 +1,24 @@
+.add-task-form {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 20px;
+  }
+  
+  .add-task-input {
+    flex: 1;
+  }
+  
+  .add-task-button {
+    align-self: flex-start;
+    margin-top: 3px;
+  }
+  
+  @media (max-width: 600px) {
+    .add-task-form {
+      flex-direction: column;
+    }
+    
+    .add-task-button {
+      width: 100%;
+    }
+  }

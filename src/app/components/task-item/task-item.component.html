@@ -1,0 +1,38 @@
+<div class="task-item" [class.completed]="task.completed">
+    <mat-checkbox 
+      [checked]="task.completed"
+      (change)="onCompleteTask()"
+      color="primary"
+      class="task-checkbox">
+    </mat-checkbox>
+    
+    <div class="task-content" [class.editing]="isEditing">
+      <ng-container *ngIf="!isEditing; else editMode">
+        <span class="task-title" [class.completed]="task.completed">
+          {{ task.title }}
+        </span>
+        <div class="task-actions">
+          <button mat-stroked-button color="primary" (click)="startEditing()" aria-label="Editar tarea">
+            Editar
+          </button>
+          <button mat-stroked-button color="warn" (click)="onDeleteTask()" aria-label="Eliminar tarea">
+            Eliminar
+          </button>
+        </div>
+      </ng-container>
+      
+      <ng-template #editMode>
+        <mat-form-field class="edit-form-field">
+          <input matInput [(ngModel)]="editedTitle" (keyup.enter)="saveEdit()" placeholder="Editar tarea">
+        </mat-form-field>
+        <div class="edit-actions">
+          <button mat-stroked-button color="primary" (click)="saveEdit()" aria-label="Guardar cambios">
+            Guardar
+          </button>
+          <button mat-stroked-button (click)="cancelEdit()" aria-label="Cancelar edición">
+            Cancelar
+          </button>
+        </div>
+      </ng-template>
+    </div>
+  </div>
